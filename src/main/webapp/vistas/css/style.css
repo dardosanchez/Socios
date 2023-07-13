@@ -1,0 +1,20 @@
+#btnAgregar {
+    background-color: rgb(150, 201, 62);
+    color: white;
+    margin: 0 auto;
+    margin-top: 2%;
+    border-color: white;
+}
+
+#btnAgregar:hover {
+    background-color: rgb(128, 171, 53);
+}
+
+
+.iconos{
+    color: black;
+}
+
+.iconos:hover{
+    color:rgb(102,102,102);
+}
