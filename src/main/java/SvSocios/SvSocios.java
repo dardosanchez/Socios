@@ -37,8 +37,8 @@ public class SvSocios extends HttpServlet {
         } else {
             switch (accion) {
                 case "modificar":
-                    
-                    dispacher = request.getRequestDispatcher("/TrabajoIntegradorBack/vistas/modificarSocio.jsp");
+                    // Redirecciono a la pagina modificar para que se seteen los campos
+                    dispacher = request.getRequestDispatcher("/modificarSocio.jsp");
                     break;
                 case "actualizar":
                     
@@ -48,6 +48,7 @@ public class SvSocios extends HttpServlet {
                     int dni = Integer.parseInt(request.getParameter("dni"));
                     String mail = request.getParameter("mail");
                     Socio socio = new Socio(id, nombre, apellido, dni, mail, true, LocalDate.now());
+                    
                     socioDAO.actualizarSocio(socio);
                     
                     dispacher = request.getRequestDispatcher("/listadoSocios.jsp");

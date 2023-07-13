@@ -61,7 +61,7 @@
     <div class="container">
         <div class="row mt-3 justify-content-center">
             <div class="col-4">
-                <form action="/TrabajoIntegradorBack/SvSocios?accion=insert" method="POST" class="">
+                <form action="SvSocios?accion=insert" method="POST" class="">
                     <div class="row">
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre</label>

@@ -91,8 +91,8 @@
                                 
                                 for (Socio elem : resultado) {
                                         
-                                String rutaM = "/TrabajoIntegradorBack/SvSocios?accion=modificar&id=" + elem.getId();
-                                String rutaE = "/TrabajoIntegradorBack/SvSocios?accion=eliminar&id=" + elem.getId();
+                                String rutaM = "SvSocios?accion=modificar&id=" + elem.getId();
+                                String rutaE = "SvSocios?accion=eliminar&id=" + elem.getId();
                             %>
                             
                                 <tr>
