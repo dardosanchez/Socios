@@ -25,13 +25,13 @@ public class SvSocios extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-        String accion = null;
+        String accion = request.getParameter("accion");
         SociosDAO socioDAO = null;
-        socioDAO = new SociosDAO();
+        socioDAO = null;
 
         RequestDispatcher dispacher = null;
-        accion = request.getParameter("accion");
-
+  
+        accion = "insert";
         if (accion == null || accion.isEmpty()) {
             dispacher = request.getRequestDispatcher("/index.jsp");
         } else {
@@ -42,16 +42,22 @@ public class SvSocios extends HttpServlet {
                     break;
                 case "actualizar":
                     
-                    int id = Integer.parseInt(request.getParameter("id"));
+                    dispacher = request.getRequestDispatcher("/listadoSocios.jsp");
+                    dispacher.forward(request, response);
+                    
+                    
                     String nombre = request.getParameter("nombre");
                     String apellido = request.getParameter("apellido");
+                    int id = Integer.parseInt(request.getParameter("id"));
                     int dni = Integer.parseInt(request.getParameter("dni"));
                     String mail = request.getParameter("mail");
                     Socio socio = new Socio(id, nombre, apellido, dni, mail, true, LocalDate.now());
                     
-                    socioDAO.actualizarSocio(socio);
+                    System.out.println(socio);
                     
-                    dispacher = request.getRequestDispatcher("/listadoSocios.jsp");
+                    socioDAO.actualizarSocio(socio);            
+                    
+                    
                     break;
                 case "eliminar":
                     
@@ -76,8 +82,15 @@ public class SvSocios extends HttpServlet {
                     dispacher = request.getRequestDispatcher("/index.jsp");
             }
         }
-
-        dispacher.forward(request, response);
+        
+        try {
+         
+            dispacher.forward(request, response);
+        } catch (Exception e) {
+            dispacher = request.getRequestDispatcher("/error.jsp");
+            dispacher.forward(request, response);
+        }
+        
     }
 
     

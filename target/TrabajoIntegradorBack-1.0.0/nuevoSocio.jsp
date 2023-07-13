@@ -65,19 +65,19 @@
                     <div class="row">
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" required>
+                            <input type="text" class="form-control" id="nombre" name="nombre" required>
                         </div>
                         <div class="mb-3">
                             <label for="apellido" class="form-label">Apellido</label>
-                            <input type="text" class="form-control" id="apellido" required>
+                            <input type="text" class="form-control" id="apellido" name="apellido" required>
                         </div>
                         <div class="mb-3">
                             <label for="dni" class="form-label">DNI</label>
-                            <input type="number" class="form-control" id="dni" required>
+                            <input type="number" class="form-control" id="dni" name="dni" required>
                         </div>
                         <div class="mb-3">
                             <label for="mail" class="form-label">Mail</label>
-                            <input type="text" class="form-control" id="mail" required>
+                            <input type="text" class="form-control" id="mail" name="mail" required>
                         </div>
                     </div>
 

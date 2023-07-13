@@ -16,7 +16,7 @@ public class Principal {
         SociosDAO socioDao = new SociosDAO();
         Socio socio;
         
-    //    socio = new Socio(56, "Santiguiño", "Grasi", 111111, "santigrassi@hotmail.com", true, LocalDate.now());
+    //    socio = new Socio(8, "Santiguiño", "Grasi", 111111, "santigrassi@hotmail.com", true, LocalDate.now());
         
     //    socioDao.guardarSocio(socio);
     //    socioDao.actualizarSocio(socio);
@@ -38,7 +38,10 @@ public class Principal {
 */
     
 /*
-        socio = socioDao.mostrarSocio(8);
+        socio = socioDao.mostrarSocio(57);
+        socio.setApellido("Grassi");
+        socioDao.actualizarSocio(socio);
+        
         System.out.println("id: " + socio.getId());
         System.out.println("nombre: " + socio.getNombre());
         System.out.println("apellido: " + socio.getApellido());
