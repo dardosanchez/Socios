@@ -10,17 +10,19 @@ public class Socio {
     private String apellido;
     private int dni;
     private String mail;
+    private boolean estado;
     private LocalDate fecha_alta;
 
     public Socio() {
     }
 
-    public Socio(int id, String nombre, String apellido, int dni, String mail, LocalDate fecha_alta) {
+    public Socio(int id, String nombre, String apellido, int dni, String mail, boolean estado, LocalDate fecha_alta) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.mail = mail;
+        this.estado = estado;
         this.fecha_alta = fecha_alta;
     }
 
@@ -64,6 +66,14 @@ public class Socio {
         this.mail = mail;
     }
 
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
     public LocalDate getFecha_alta() {
         return fecha_alta;
     }
@@ -71,6 +81,7 @@ public class Socio {
     public void setFecha_alta(LocalDate fecha_alta) {
         this.fecha_alta = fecha_alta;
     }
+
     
     
     
