@@ -1,4 +1,4 @@
-package SvSocios;
+package Servlets;
 
 import Entidad.Socio;
 import Persistencia.SociosDAO;

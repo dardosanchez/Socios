@@ -70,6 +70,7 @@
                 <div class="col">
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
+                            
                             <thead>
                                 <tr>
                                     <th>Id</th>
@@ -77,7 +78,7 @@
                                     <th>Apellido</th>
                                     <th>DNI</th>
                                     <th>Mail</th>
-                                    <th>Fecha</th>
+                                    <th class="text-center" >Fecha de Alta</th>
                                     <th class="text-center">Modificar</th>
                                     <th class="text-center">Eliminar</th>
                                 </tr>
@@ -101,7 +102,7 @@
                                     <td><%= elem.getApellido() %></td>
                                     <td><%= elem.getDni() %></td>
                                     <td><%= elem.getMail() %></td>
-                                    <td><%= elem.getFecha_alta() %></td>
+                                    <td class="text-center" ><%= elem.getFecha_alta() %></td>
                                     <td class="text-center">
                                         <a href="<%= rutaM %>" class="iconos">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
@@ -121,12 +122,12 @@
                             <% 
                              }
                             %>
-                            
+                           
                                 
                                 
                                 
                             </tbody>
-
+                             <caption>Registros encontrados: <%= resultado.size() %> </caption>
                         </table>
                     </div>
                 </div>
