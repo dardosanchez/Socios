@@ -75,7 +75,7 @@
                     
                 %>
                 
-                <form action="SvSocios?accion=actualizar" method="POST" class="">
+                <form action="SvSocios?accion=actualizar" method="post" class="">
                     <div class="row">
                         <div class="mb-3">
                             <input type="hidden" class="form-control" id="id" name="id" value="<%= resulSocio.getId() %>" >
