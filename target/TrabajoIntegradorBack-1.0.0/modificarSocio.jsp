@@ -45,7 +45,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a href="/TrabajoIntegradorBack/index.jsp" class="nav-link">Inicio</a></li>
                     <li class="nav-item"><a href="/TrabajoIntegradorBack/nuevoSocio.jsp" class="nav-link">Nuevo Socio</a></li>
-                    <li class="nav-item"><a href="/TrabajoIntegradorBack/listadoSocios.jsp" class="nav-link">Ver Socios</a></li>
+                    <li class="nav-item"><a href="SvSocios?accion=" class="nav-link">Ver Socios</a></li>
                 </ul>
 
                 

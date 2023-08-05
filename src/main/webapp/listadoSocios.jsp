@@ -23,9 +23,41 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
         <link href="css/style.css" rel="stylesheet" />
+        <style>
+            body {
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+
+            .container {
+                flex: 1;
+            }
+
+            footer {
+                background-color: rgb(53, 58, 64);
+                color: white;
+                text-align: center;
+                padding: 10px 0;
+            }
+
+            @media screen and (max-height: 600px) {
+                footer {
+                    position: fixed;
+                    bottom: 0;
+                    width: 100%;
+                }
+            }
+
+            @media screen and (min-height: 601px) {
+                footer {
+                    display: block;
+                }
+            }
+        </style>
     </head>
 
-    <body style="padding-top: 90px;">
+    <body style="padding-top: 90px; display: flex; flex-direction: column; min-height: 100vh;">
 
 
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgb(53, 58, 64)">
@@ -46,19 +78,19 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a href="/TrabajoIntegradorBack/index.jsp" class="nav-link">Inicio</a></li>
                         <li class="nav-item"><a href="/TrabajoIntegradorBack/nuevoSocio.jsp" class="nav-link">Nuevo Socio</a></li>
-                        <li class="nav-item"><a href="/TrabajoIntegradorBack/listadoSocios.jsp" class="nav-link">Ver Socios</a></li>
+                        <li class="nav-item"><a href="SvSocios?accion=" class="nav-link">Ver Socios</a></li>
                     </ul>
-
-                    <form action="" class="d-flex">
-                        <input type="search" class="form-control me-2" placeholder="Buscar" aria-label="Buscar">
-                        <button class="btn btn-outline-light" type="button">Buscar</button>
+                   
+                    <form  action="SvSocios" method="GET" class="d-flex" >
+                        <input type="search" class="form-control me-2" placeholder="Buscar" aria-label="Buscar"  name="txtBuscar">
+                        <input type="hidden" name="accion" value="buscar"> 
+                        <input type="submit" value="Buscar" class="btn btn-outline-light" name="btnBuscar">
                     </form>
-
                 </div>
             </div>
         </nav>
-
-
+        
+        
         <div class="mt-4 text-center">
             <p class="mb-0">LISTADO DE</p>
             <h3 class="mb-4">SOCIOS</h3>
@@ -84,27 +116,23 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <% 
-                                
-                                List<Socio> resultado = null;
-                                SociosDAO socioDao = new SociosDAO();
-                                resultado = socioDao.listarSocios();
-                                
-                                for (Socio elem : resultado) {
-                                        
-                                String rutaM = "SvSocios?accion=modificar&id=" + elem.getId();
-                                String rutaE = "SvSocios?accion=eliminar&id=" + elem.getId();
-                            %>
-                            
+                                <%
+                                    List<Socio> resultado = (List<Socio>) request.getAttribute("resultado"); // Obtener la lista de socios desde el atributo "resultado" que proviene del Servlet
+                                    if (resultado != null) {
+                                        for (Socio elem : resultado) {
+                                            String rutaM = "SvSocios?accion=modificar&id=" + elem.getId();
+                                            String rutaE = "SvSocios?accion=eliminar&id=" + elem.getId();
+                                %>
+
                                 <tr>
-                                    <td><%= elem.getId() %></td>
-                                    <td><%= elem.getNombre() %></td>
-                                    <td><%= elem.getApellido() %></td>
-                                    <td><%= elem.getDni() %></td>
-                                    <td><%= elem.getMail() %></td>
-                                    <td class="text-center" ><%= elem.getFecha_alta() %></td>
+                                    <td><%= elem.getId()%></td>
+                                    <td><%= elem.getNombre()%></td>
+                                    <td><%= elem.getApellido()%></td>
+                                    <td><%= elem.getDni()%></td>
+                                    <td><%= elem.getMail()%></td>
+                                    <td class="text-center" ><%= elem.getFecha_alta()%></td>
                                     <td class="text-center">
-                                        <a href="<%= rutaM %>" class="iconos">
+                                        <a href="<%= rutaM%>" class="iconos">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
                                             <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
                                             </svg>
@@ -118,16 +146,22 @@
                                         </a>
                                     </td>
                                 </tr>
-                            
-                            <% 
-                             }
-                            %>
-                           
-                                
-                                
-                                
+
+                                <%
+                                        }
+                                    }
+                                %>
+
+
+
+
                             </tbody>
-                             <caption>Registros encontrados: <%= resultado.size() %> </caption>
+                            <caption>
+                                <%-- Verifica si la lista de resultados no es nula antes de mostrar el número de registros encontrados --%>
+                                <% if (resultado != null) {%>
+                                Registros encontrados: <%= resultado.size()%>
+                                <% }%>
+                            </caption>
                         </table>
                     </div>
                 </div>
@@ -135,9 +169,8 @@
         </div>
 
 
-        <footer class="py-4 mt-4 fixed-bottom" style="background-color: rgb(53, 58, 64)">
+        <footer class="py-4 mt-4" style="background-color: rgb(53, 58, 64);">
             <div class="container text-light text-center">
-
                 <small class="text-white-50">&copy; Copyright by Dardo Sanchez</small>
             </div>
         </footer>

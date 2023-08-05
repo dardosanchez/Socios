@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 public class SociosDAO extends DAO{
     
     public void guardarSocio (Socio socio){
@@ -116,4 +117,39 @@ public class SociosDAO extends DAO{
             return null;
         }
     }
+    
+    public List<Socio> busquedaSocio (String texto){
+        List<Socio> lista = new ArrayList<>();
+        
+        String sql = "SELECT * FROM Socios where nombre like '%" + texto + "%' or apellido like '%" + texto +"%'";
+        
+        try {
+            consultarBase(sql);
+            
+            Socio socio;
+            List<Socio> listaProductos = new ArrayList<>();
+
+            while (resultado.next()) {
+                socio = new Socio();
+                
+                socio.setId(resultado.getInt("id_socio"));
+                socio.setNombre(resultado.getString("nombre"));
+                socio.setApellido(resultado.getString("apellido"));
+                socio.setDni(resultado.getInt("dni"));
+                socio.setMail(resultado.getString("mail"));
+                socio.setEstado(resultado.getBoolean("estado"));
+                socio.setFecha_alta(resultado.getDate("fecha_alta").toLocalDate());
+                
+                listaProductos.add(socio);
+            }
+            return listaProductos;
+            
+        } catch (Exception e) {
+            System.out.println("Error al listar los productos");
+            e.printStackTrace();
+            return null;
+        }
+        
+    }
+    
 }
